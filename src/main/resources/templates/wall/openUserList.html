@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="col-sm-5">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div  role="group">
+						<!--<div class="form-group col-sm-6">-->
+							<!--<input id="" type="text" class="form-control"-->
+								<!--placeholder="姓名">-->
+						<!--</div>-->
+						<!--<button class="btn btn-success" onclick="reLoad()">查询</button>-->
+						<div class="row wrapper border-bottom white-bg page-heading"
+							 th:fragment="headerNav">
+							<div class="col-lg-10">
+								<h2>用户开户墙</h2>
+
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+					</div>
+					<table class=" table table-hover" data-page-size="10">
+						<thead>
+						<tr>
+							<th width="20%">用户名</th>
+							<th width="40%">销售名</th>
+							<th width="40%">创建时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="openUserList : ${openUserList}">
+							<td th:text="${openUserList.userName}">Onions</td>
+							<td th:text="${openUserList.sale}">Onions</td>
+							<td th:text="${#dates.format(openUserList.time,'yyyy-MM-dd')}">Onions</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+
+		</div>
+		<div class="col-sm-5">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="exampleToolbar" role="group">
+						<!--<div class="form-group col-sm-6">-->
+							<!--<input id="searchName" type="text" class="form-control"-->
+								   <!--placeholder="姓名">-->
+						<!--</div>-->
+						<!--<button class="btn btn-success" onclick="reLoad()">查询</button>-->
+						<div class="row wrapper border-bottom white-bg page-heading"
+							 th:fragment="headerNav">
+							<div class="col-lg-10">
+								<h2>开户排行榜</h2>
+
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+					</div>
+					<table class=" table table-hover" data-page-size="10">
+						<thead>
+						<tr>
+							<th width="20%">排名</th>
+							<th width="40%">销售名</th>
+							<th width="40%">开户数</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="saleList,stat : ${saleList}">
+							<td th:text="${stat.index+1}">Onions</td>
+							<td th:text="${saleList.sale}">Onions</td>
+							<td th:text="${saleList.counts}">Onions</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

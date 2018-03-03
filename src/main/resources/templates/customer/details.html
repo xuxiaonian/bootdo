@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="col-sm-12">
+		<div class="ibox">
+			<div class="ibox-body">
+				<div id="exampleToolbar" role="group">
+过关方式：<p th:text="${details.subName}"></p>  总金额：<p th:text="${details.money}"></p>
+				</div>
+				<table class=" table table-hover" data-page-size="10">
+					<thead>
+					<tr>
+						<th width="10%">比赛编号</th>
+						<th width="20%">比赛时间</th>
+						<th width="20%">对阵</th>
+						<th width="10%">半场</th>
+						<th width="10%">全场</th>
+						<th width="10%">玩法</th>
+						<th width="20%">投注</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="dList : ${details.dList}">
+						<td th:text="${dList.zId}">Onions</td>
+						<td th:text="${dList.payTime}">Onions</td>
+						<td><p th:text="${dList.zname}"></p>(主)vs<p th:text="${dList.kname}"></p>(客)</td>
+						<td><p th:text="${dList.zqf}"></p>:<p th:text="${dList.kqf}"></p>(客)</td>
+						<td><p th:text="${dList.zbf}"></p>:<p th:text="${dList.kbf}"></p>(客)</td>
+						<td th:text="${dList.wanfen}">Onions</td>
+						<td th:text="${dList.touzhu}">Onions</td>
+
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="col-sm-12">
+		<div class="ibox">
+			<div class="ibox-body">
+				<!--<div id="exampleToolbar" role="group">-->
+					<!--<div class="form-group col-sm-6">-->
+						<!--<input id="searchName" type="text" class="form-control"-->
+							   <!--placeholder="姓名">-->
+					<!--</div>-->
+					<!--<button class="btn btn-success" onclick="reLoad()">查询</button>-->
+
+				<!--</div>-->
+				自购量 ：<p th:text="${achievement.a}"></p>  跟单量：<p th:text="${achievement.b}"></p>
+				被跟单量：<p th:text="${achievement.c}"></p>
+				<table class=" table table-hover" data-page-size="10">
+					<thead>
+					<tr>
+						<th width="10%">序号</th>
+						<th width="10%">用户名称</th>
+
+						<th width="10%">自购量</th>
+
+						<th width="10%">跟单量</th>
+						<th width="10%">被跟单量</th>
+
+						<th width="10%">时间</th>
+
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="dList,stat : ${achievement.dailyRankingsList}">
+						<td th:text="${stat.index}">Onions</td>
+						<td th:text="${dList.sale}">Onions</td>
+						<td th:text="${dList.own}">Onions</td>
+						<td th:text="${dList.follow}">Onions</td>
+						<td th:text="${dList.befollowed}">Onions</td>
+						<td th:text="${dList.sort}">Onions</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</div>
+<div th:include="include :: footer"></div>
+
+
+</body>
+
+</html>

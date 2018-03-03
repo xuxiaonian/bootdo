@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="col-sm-12">
+		<div class="ibox">
+			<div class="ibox-body">
+				<!--<div id="exampleToolbar" role="group">-->
+				<!--<div class="form-group col-sm-6">-->
+				<!--<input id="searchName" type="text" class="form-control"-->
+				<!--placeholder="姓名">-->
+				<!--</div>-->
+				<!--<button class="btn btn-success" onclick="reLoad()">查询</button>-->
+
+				<!--</div>-->
+				<table class=" table table-hover" data-page-size="10">
+					<thead>
+					<tr>
+						<th width="10%">排名</th>
+						<th width="10%">销售名称</th>
+						<th width="10%">上级主管</th>
+						<th width="10%">自购量</th>
+						<th width="10%">总销售</th>
+						<th width="10%">跟单量</th>
+						<th width="10%">被跟单量</th>
+						<th width="10%">开户数</th>
+						<th width="10%">消费数</th>
+						<th width="10%">入职时间</th>
+
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="dList,stat : ${monthList}">
+						<td th:text="${stat.index}">Onions</td>
+						<td th:text="${dList.sale}">Onions</td>
+						<td th:text="${dList.manager}">Onions</td>
+						<td th:text="${dList.own}">Onions</td>
+						<td th:text="${dList.follow}">Onions</td>
+						<td th:text="${dList.total}">Onions</td>
+						<td th:text="${dList.befollowed}">Onions</td>
+						<td th:text="${dList.openaccount}">Onions</td>
+						<td th:text="${dList.consumption}">Onions</td>
+
+						<td th:text="${#dates.format(dList.timeentry, 'yyyy-MM-dd')}">2014-12-01</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</div>
+<div th:include="include :: footer"></div>
+
+
+</body>
+
+</html>

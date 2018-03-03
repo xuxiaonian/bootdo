@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="col-sm-5">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div  role="group">
+
+						<div class="row wrapper border-bottom white-bg page-heading"
+							 th:fragment="headerNav">
+							<div class="col-lg-10">
+								<h2>用户充值墙</h2>
+
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+					</div>
+					<table class=" table table-hover" data-page-size="10">
+						<thead>
+						<tr>
+							<th width="20%">用户名</th>
+							<th width="20%">充值金额</th>
+							<th width="20%">销售</th>
+							<th width="40%">充值时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="rechargeList : ${rechargeList}">
+							<td th:text="${rechargeList.userName}">Onions</td>
+							<td th:text="${rechargeList.sale}">Onions</td>
+							<td th:text="${rechargeList.money}">Onions</td>
+							<td th:text="${#dates.format(rechargeList.time,'yyyy-MM-dd')}">Onions</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2">
+
+		</div>
+		<div class="col-sm-5">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div id="exampleToolbar" role="group">
+
+						<div class="row wrapper border-bottom white-bg page-heading"
+							 th:fragment="headerNav">
+							<div class="col-lg-10">
+								<h2>开户消费榜</h2>
+
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+					</div>
+					<table class=" table table-hover" data-page-size="10">
+						<thead>
+						<tr>
+							<th width="20%">用户名</th>
+							<th width="20%">消费金额</th>
+							<th width="20%">销售</th>
+							<th width="40%">消费时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="consumeList : ${consumeList}">
+							<td th:text="${consumeList.userName}">Onions</td>
+							<td th:text="${consumeList.sale}">Onions</td>
+							<td th:text="${consumeList.money}">Onions</td>
+							<td th:text="${#dates.format(consumeList.time,'yyyy-MM-dd')}">Onions</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
