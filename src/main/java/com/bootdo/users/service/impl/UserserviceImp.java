@@ -1,7 +1,8 @@
 package com.bootdo.users.service.impl;
 
 
-import com.bootdo.common.utils.EdsUtil;
+
+import com.bootdo.common.utils.StringTools;
 import com.bootdo.users.dao.UsersMapper;
 
 
@@ -33,8 +34,8 @@ public class UserserviceImp implements UsersService {
 
 	@Override
 	public Integer updatePass(Integer userId, String password) {
-		password= EdsUtil.encryptBasedDes(password);
 
+		password= StringTools.MD5EncodeToHex(password);
 		return usersMapper.updatePass(userId,password);
 	}
 

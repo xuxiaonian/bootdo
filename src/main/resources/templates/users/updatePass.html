@@ -10,7 +10,7 @@
 			<form id="formTag" action="updatePa" method="POST"
 				  class="form-horizontal" enctype="multipart/form-data">
 
-				<input type="hidden" class="form-control input" name="userId"
+				<input type="hidden" class="form-control input" id="userId"
 					   th:value="${user.userId}" />
 
 
@@ -100,8 +100,6 @@
         function sub () {
             var second = $("#second").val();
             var userId = $("#userId").val();
-            alert(userId)
-            userId=1;
             if (second != null) {
                 $.ajax({
 

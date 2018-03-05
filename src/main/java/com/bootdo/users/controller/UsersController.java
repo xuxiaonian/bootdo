@@ -3,6 +3,7 @@ import com.bootdo.common.utils.PageUtils;
 import com.bootdo.common.utils.Query;
 
 
+import com.bootdo.common.utils.StringTools;
 import com.bootdo.users.domain.SaleUser;
 import com.bootdo.users.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,10 @@ public class UsersController {
 		String outs="1";
 		String password=pass.getEmail();
 		if(password!=null){
-			outs="0";
+			if(password.equals(StringTools.MD5EncodeToHex(keyWord))){
+				outs="0";
+			}
+
 		}
 		response.setContentType("text/html;charset=utf-8");
 		response.setHeader("Cache-Control", "no-cache");

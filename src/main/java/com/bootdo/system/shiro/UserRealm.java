@@ -1,11 +1,10 @@
 package com.bootdo.system.shiro;
 
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.bootdo.common.utils.EdsUtil;
 import com.bootdo.common.utils.StringTools;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -55,9 +54,10 @@ public class UserRealm extends AuthorizingRealm {
 		if (user == null) {
 			throw new UnknownAccountException("账号不正确");
 		}
-		String pass= EdsUtil.decryptBasedDes(user.getPassword());
+
+		String pass= StringTools.MD5EncodeToHex(password);
 		// 密码错误
-		if (!pass.equals(password)) {
+		if (!pass.equals(user.getPassword())) {
 			throw new IncorrectCredentialsException("密码不正确");
 		}
 
