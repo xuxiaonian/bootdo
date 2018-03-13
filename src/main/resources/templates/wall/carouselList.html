@@ -23,8 +23,9 @@
 						<thead>
 						<tr>
 							<th width="20%">用户名</th>
-							<th width="20%">充值金额</th>
+
 							<th width="20%">销售</th>
+							<th width="20%">充值金额</th>
 							<th width="40%">充值时间</th>
 						</tr>
 						</thead>
@@ -32,8 +33,8 @@
 						<tr th:each="rechargeList : ${rechargeList}">
 							<td th:text="${rechargeList.userName}">Onions</td>
 							<td th:text="${rechargeList.sale}">Onions</td>
-							<td th:text="${rechargeList.money}">Onions</td>
-							<td th:text="${#dates.format(rechargeList.time,'yyyy-MM-dd')}">Onions</td>
+							<td th:text="${rechargeList.money*0.01}">Onions</td>
+							<td th:text="${#dates.format(rechargeList.time,'yyyy-MM-dd HH:mm:ss')}">Onions</td>
 						</tr>
 						</tbody>
 					</table>
@@ -70,8 +71,8 @@
 						<tr th:each="consumeList : ${consumeList}">
 							<td th:text="${consumeList.userName}">Onions</td>
 							<td th:text="${consumeList.sale}">Onions</td>
-							<td th:text="${consumeList.money}">Onions</td>
-							<td th:text="${#dates.format(consumeList.time,'yyyy-MM-dd')}">Onions</td>
+							<td th:text="${consumeList.money*0.01}">Onions</td>
+							<td th:text="${#dates.format(consumeList.time,'yyyy-MM-dd HH:mm:ss')}">Onions</td>
 						</tr>
 						</tbody>
 					</table>

@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -27,17 +28,27 @@ public class Scheduler {
         logger.info("每分钟执行一次。结束。");
     }
      //每日的销售排行
-    @Scheduled(cron="0 44 20 * * ?")
-    //  @Scheduled(cron="0 0/1 * * * ?") //每分钟执行一次
+   @Scheduled(cron="0 44 20 * * ?")
+//      @Scheduled(cron="0 0/1 * * * ?") //每分钟执行一次
     public void testTasks() {
 
         List<SaleUser> saleList=timedTaskMapper.saleList();
         for (SaleUser user :saleList){
             DailyRankings dailyRankings =new DailyRankings();
             dailyRankings.setSale(user.getPhone());
-            dailyRankings.setManager(user.getUserName());
+            String ss= user.getUserName();
+            if(ss==null){
+                ss="";
+            }
+            dailyRankings.setManager(ss);
             Integer id=user.getUserId();
-            String data="20171208";
+            Date date=new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            date = calendar.getTime();
+            String data = new SimpleDateFormat("yyyyMMdd").format(date);
+
             // 自购量 private  Float own;
             Float own=timedTaskMapper.own(id,data);
             if (own==null){
@@ -62,11 +73,15 @@ public class Scheduler {
             dailyRankings.setConsumption(consumption);
             // 被跟单量 private  Float befollowed;
             Integer befollowed= timedTaskMapper.befollowed(id);
+            if(befollowed==null){
+                befollowed=0;
+            }
             dailyRankings.setBefollowed(befollowed);
             dailyRankings.setTimeentry(user.getTime());
             dailyRankings.setNewtime(new Date());
             String sort = new SimpleDateFormat("yyyyMMdd").format(new Date());
             dailyRankings.setSort(sort);
+
             timedTaskMapper.insert(dailyRankings);
         }
 
@@ -76,19 +91,22 @@ public class Scheduler {
     }
     //每月的销售排行
     @Scheduled(cron="0 44 20 * * ?")
+//   @Scheduled(cron="0 0/1 * * * ?") //每分钟执行一次
     public void month() {
         logger.info("每啊啊啊分钟执行一次。开始……");
         List<SaleUser> saleList=timedTaskMapper.saleList();
         for (SaleUser user :saleList){
             DailyRankings dailyRankings =new DailyRankings();
             dailyRankings.setSale(user.getPhone());
-            dailyRankings.setManager(user.getUserName());
+            String ss= user.getUserName();
+            if(ss==null){
+              ss="";
+            }
+            dailyRankings.setManager(ss);
             Integer id=user.getUserId();
-//            String sort = new SimpleDateFormat("yyyyMM").format(new Date());
-//            System.out.println(sort+"00");
-//            System.out.println(sort+"32");
-            String odata="20171200";
-            String ndata="20171232";
+            String date = new SimpleDateFormat("yyyyMM").format(new Date());
+            String odata=date+"00";
+            String ndata=date+"00";
             // 自购量 private  Float own;
             Float own=timedTaskMapper.monthown(id,odata,ndata);
             if (own==null){
@@ -113,6 +131,9 @@ public class Scheduler {
             dailyRankings.setConsumption(consumption);
             // 被跟单量 private  Float befollowed;
             Integer befollowed= timedTaskMapper.befollowed(id);
+            if(befollowed==null){
+                befollowed=0;
+            }
             dailyRankings.setBefollowed(befollowed);
             dailyRankings.setTimeentry(user.getTime());
             dailyRankings.setNewtime(new Date());
@@ -127,9 +148,14 @@ public class Scheduler {
     }
 
 //    public static void main(String[] args){
-//        String sort = new SimpleDateFormat("yyyyMM").format(new Date());
-//        System.out.println(sort+"00");
-//        System.out.println(sort+"32");
+//Date date=new Date();
+//    Calendar calendar = Calendar.getInstance();
+//            calendar.setTime(date);
+//            calendar.add(Calendar.DAY_OF_MONTH, -1);
+//    date = calendar.getTime();
+//    String data = new SimpleDateFormat("yyyyMMdd").format(date);
+//        System.out.println(data);
+//
 //    }
 
 }

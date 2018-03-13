@@ -49,7 +49,7 @@ private Date timeentry;
    }
 
    public void setOwn(Float own) {
-      this.own = own;
+      this.own = own/100;
    }
 
    public Float getFollow() {
@@ -57,7 +57,7 @@ private Date timeentry;
    }
 
    public void setFollow(Float follow) {
-      this.follow = follow;
+      this.follow = follow/100;
    }
 
    public Float getTotal() {

@@ -324,8 +324,8 @@ public class StringTools {
         }
         return true;
     }
-    public static void main(String[] args) {
-        String psaa=StringTools.MD5EncodeToHex("asd123");
-        System.out.println(psaa);
-    }
+//    public static void main(String[] args) {
+//        String psaa=StringTools.MD5EncodeToHex("asd123");
+//        System.out.println(psaa);
+//    }
 }

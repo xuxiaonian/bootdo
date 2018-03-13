@@ -18,6 +18,9 @@
 				<!--</div>-->
 				自购量 ：<p th:text="${achievement.a}"></p>  跟单量：<p th:text="${achievement.b}"></p>
 				被跟单量：<p th:text="${achievement.c}"></p>
+				自购提成：<p th:text="${achievement.sales}"></p>
+				跟单提成：<p th:text="${achievement.commission}"></p>
+				合计：<p th:text="${achievement.total}"></p>
 				<table class=" table table-hover" data-page-size="10">
 					<thead>
 					<tr>
@@ -37,8 +40,8 @@
 					<tr th:each="dList,stat : ${achievement.dailyRankingsList}">
 						<td th:text="${stat.index}">Onions</td>
 						<td th:text="${dList.sale}">Onions</td>
-						<td th:text="${dList.own}">Onions</td>
-						<td th:text="${dList.follow}">Onions</td>
+						<td th:text="${dList.own*0.01}">Onions</td>
+						<td th:text="${dList.follow*0.01}">Onions</td>
 						<td th:text="${dList.befollowed}">Onions</td>
 						<td th:text="${dList.sort}">Onions</td>
 					</tr>

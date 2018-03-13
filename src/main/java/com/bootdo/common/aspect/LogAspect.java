@@ -88,6 +88,6 @@ public class LogAspect {
 		Date date = new Date();
 		sysLog.setGmtCreate(date);
 		// 保存系统日志
-		logMapper.save(sysLog);
+//		logMapper.save(sysLog);
 	}
 }

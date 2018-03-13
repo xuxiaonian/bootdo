@@ -81,7 +81,7 @@ private  String status;
     }
 
     public void setAmout(Float amout) {
-        this.amout = amout;
+        this.amout = amout/100;
     }
 
     public Float getFee() {

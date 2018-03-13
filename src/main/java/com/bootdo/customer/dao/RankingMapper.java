@@ -2,12 +2,13 @@ package com.bootdo.customer.dao;
 
 import com.bootdo.common.domain.DailyRankings;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 
-
+@Mapper
 public interface RankingMapper {
 
 

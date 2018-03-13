@@ -3,7 +3,7 @@ package com.bootdo.users.dao;
 import com.bootdo.users.domain.SaleUser;
 import org.apache.ibatis.annotations.*;
 
-
+@Mapper
 public interface UsersMapper {
 
 

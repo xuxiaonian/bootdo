@@ -6,8 +6,8 @@ import com.bootdo.customer.domain.*;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-;
 
+@Mapper
 public interface CustomerMapper {
 
 
@@ -80,4 +80,20 @@ public interface CustomerMapper {
 
 	@Select(" select sum(b.FOLLOW_COUNT)   from GPC.TB_ORDER_INFO a  LEFT JOIN GPC.TB_PROGRAM_RELEASE b on a.PROGRAM_ID=b.PROGRAM_ID where a.user_id in (select user_id from act.tb_user_info where sale_id =#{id}) and a.ORDER_STATUS=1 and a.ISFOLLOW=1 ")
 	Integer befollowed (@Param("id")Integer id);
+	@Select(" select a.LEVELS FROM C_SYS_USER a  WHERE a.USER_ID=#{id} ")
+	Integer selectSale(int i);
+
+
+
+	@Select(" select sum(a.ORDER_AMOUNT) from GPC.TB_ORDER_INFO a  where a.user_id in (select user_id from C_SYS_USER where PARENT_ID =#{id})  and a.ORDER_STATUS=1 and a.ISFOLLOW=0 and a.START_DAY>#{oday} and #{nday}> a.START_DAY")
+	Float owns(@Param("id")int i, @Param("oday")String oday, @Param("nday")String nday);
+
+
+	@Select(" select sum(a.ORDER_AMOUNT) from GPC.TB_ORDER_INFO a  where a.user_id in (select user_id from C_SYS_USER where PARENT_ID =#{id})   and a.ORDER_STATUS=1 and a.ISFOLLOW=1 and a.START_DAY>#{oday} and #{nday}> a.START_DAY")
+	Float  follows(@Param("id")int i,@Param("oday")String oday, @Param("nday")String nday);
+	@Select(" select sum(a.ORDER_AMOUNT) from GPC.TB_ORDER_INFO a  where a.user_id in (select user_id from C_SYS_USER where PARENT_ID in (select user_id from C_SYS_USER where PARENT_ID =#{id}) ) and a.ORDER_STATUS=1 and a.ISFOLLOW=0 and a.START_DAY>#{oday} and #{nday}> a.START_DAY")
+	Float owns1(int i, String odey, String nady);
+
+	@Select(" select sum(a.ORDER_AMOUNT) from GPC.TB_ORDER_INFO a  where a.user_id in (select user_id from C_SYS_USER where PARENT_ID in (select user_id from C_SYS_USER where PARENT_ID =#{id}) )    and a.ORDER_STATUS=1 and a.ISFOLLOW=1 and a.START_DAY>#{oday} and #{nday}> a.START_DAY")
+	Float follows1(int i, String odey, String nady);
 }

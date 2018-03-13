@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.bootdo.common.utils.StringTools;
+import com.bootdo.system.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -20,13 +21,14 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bootdo.common.utils.ShiroUtils;
-import com.bootdo.system.dao.UserMapper;
+
 import com.bootdo.system.domain.SysUserDO;
 import com.bootdo.system.service.MenuService;
 
 public class UserRealm extends AuthorizingRealm {
+
 	@Autowired
-	UserMapper userMapper;
+	UserService userService;
 	@Autowired
 	MenuService menuService;
 
@@ -48,7 +50,7 @@ public class UserRealm extends AuthorizingRealm {
 
 		// 查询用户信息
 
-		SysUserDO user = userMapper.list(username).get(0);
+		SysUserDO user = userService.list(username).get(0);
 
 
 		if (user == null) {

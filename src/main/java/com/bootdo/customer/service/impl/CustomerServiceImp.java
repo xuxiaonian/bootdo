@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -102,7 +103,8 @@ public class CustomerServiceImp implements CustomerService {
 	@Override
 	public Achievement achievement(int i) {
 		Achievement aa= new Achievement();
-			String sort = new SimpleDateFormat("yyyyMM").format(new Date());
+		DecimalFormat    df   = new DecimalFormat("######0.00");
+		String sort = new SimpleDateFormat("yyyyMM").format(new Date());
 		String odey=sort+"00";
 		String nady=sort+"32";
         Float a1=0.0F;
@@ -137,6 +139,58 @@ public class CustomerServiceImp implements CustomerService {
 		aa.setA(a1);
 		aa.setB(b1);
 		aa.setC(c1);
+
+
+
+		Integer levels=customerMapper.selectSale(i);
+		if(levels==3){
+			Double  sales= (a1*0.03*0.85*0.01);
+			Double commission=(b1*0.035*0.85);
+			aa.setCommission(df.format(commission));
+			aa.setSales(df.format(sales));
+			aa.setTotal(df.format(sales+commission));
+		}else if(levels==2){
+			Float owns= customerMapper.owns(i,odey,nady);
+			if (owns==null){
+				owns=0.0f;
+			}
+
+
+			Float follows=customerMapper.follows(i,odey,nady);
+			if (follows==null){
+				follows=0.0f;
+			}
+
+			Double  sales= (a1*0.03*0.85*0.01+owns*0.03*0.12);
+			Double commission=(b1*0.035*0.85+follows*0.035*0.12);
+			aa.setCommission(df.format(commission));
+			aa.setSales(df.format(sales));
+			aa.setTotal(df.format(sales+commission));
+		}else if(levels==1 || levels==0 ){
+			Float owns= customerMapper.owns(i,odey,nady);
+			if (owns==null){
+				owns=0.0f;
+			}
+
+			Float follows=customerMapper.follows(i,odey,nady);
+			if (follows==null){
+				follows=0.0f;
+			}
+			Float owns1= customerMapper.owns1(i,odey,nady);
+			if (owns1==null){
+				owns1=0.0f;
+			}
+
+			Float follows1=customerMapper.follows1(i,odey,nady);
+			if (follows1==null){
+				follows1=0.0f;
+			}
+			Double  sales= (a1*0.03*0.85*0.01+owns*0.03*0.12+owns1*0.03*0.03);
+			Double commission=(b1*0.035*0.85+follows*0.035*0.12+follows1*0.035*0.03);
+			aa.setCommission(df.format(commission));
+			aa.setSales(df.format(sales));
+			aa.setTotal(df.format(sales+commission));
+		}
 		aa.setDailyRankingsList(userList);
 		return aa;
 	}

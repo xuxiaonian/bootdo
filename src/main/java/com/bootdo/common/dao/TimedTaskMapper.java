@@ -6,9 +6,10 @@ import java.util.Map;
 import com.bootdo.common.domain.DailyRankings;
 import com.bootdo.users.domain.SaleUser;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
+@Mapper
 public interface TimedTaskMapper {
 	@Select("select a.GMT_CREATE as time ,  a.NAME as phone , a.USER_ID  as userId ,b.NAME as userName from C_SYS_USER a LEFT JOIN C_SYS_USER b on a.PARENT_ID=b.USER_ID  ")
 	List<SaleUser> saleList();

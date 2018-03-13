@@ -61,7 +61,7 @@ private String bonus;
 	}
 
 	public void setOrderAmount(Float orderAmount) {
-		this.orderAmount = orderAmount;
+		this.orderAmount = orderAmount/100;
 	}
 
 	public String getIsFollow() {

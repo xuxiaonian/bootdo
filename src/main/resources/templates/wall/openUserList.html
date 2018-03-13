@@ -35,7 +35,7 @@
 						<tr th:each="openUserList : ${openUserList}">
 							<td th:text="${openUserList.userName}">Onions</td>
 							<td th:text="${openUserList.sale}">Onions</td>
-							<td th:text="${#dates.format(openUserList.time,'yyyy-MM-dd')}">Onions</td>
+							<td th:text="${#dates.format(openUserList.time,'yyyy-MM-dd hh:mm:ss ')}">Onions</td>
 						</tr>
 						</tbody>
 					</table>

@@ -16,8 +16,10 @@ import org.springframework.context.annotation.Configuration;
 import com.bootdo.system.shiro.UserRealm;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import org.springframework.core.annotation.Order;
 
 @Configuration
+@Order(2)
 public class ShiroConfig {
 	@Bean
 	UserRealm userRealm() {

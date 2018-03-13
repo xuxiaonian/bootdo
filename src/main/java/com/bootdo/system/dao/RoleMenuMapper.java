@@ -3,10 +3,11 @@ package com.bootdo.system.dao;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.bootdo.system.domain.RoleMenuDO;
-
+@Mapper
 public interface RoleMenuMapper {
 	@Insert("INSERT INTO sys_role_menu" + "(id, role_id, menu_id)" + "VALUES(#{id}, #{roleId}, #{menuId})")
 	int save(RoleMenuDO rm);

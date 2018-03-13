@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-
+@Mapper
 public interface WallMapper {
 
 	@Select(" select * from ( SELECT rownum rn, a.USER_NAME ,a.CREATE_TIMESTAMP as time ,b.NAME as sale FROM act.TB_USER_INFO a LEFT JOIN C_SYS_USER b ON a.SALE_ID=b.USER_ID " +
